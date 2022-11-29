@@ -26,7 +26,7 @@
             <version>2.1.4</version>
         </dependency>
 
-        <!--swagger-->
+       <!-- &lt;!&ndash;swagger-->
         <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
         <dependency>
         <groupId>io.springfox</groupId>
@@ -48,6 +48,7 @@
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
         </dependency>
+
 
         <!-- knife4j接口文档 -->
         <dependency>

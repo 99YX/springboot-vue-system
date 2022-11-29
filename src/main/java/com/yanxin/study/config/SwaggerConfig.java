@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(true)
                 .forCodeGeneration(false)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.yanxin.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.yanxin.study.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
