@@ -11,6 +11,7 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+/*http://localhost:8083/swagger-ui/#/basic-error-controller/errorUsingPOST*/
 @Configuration
 @EnableOpenApi
 public class SwaggerConfig {
