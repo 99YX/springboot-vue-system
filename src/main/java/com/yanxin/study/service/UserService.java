@@ -53,11 +53,11 @@ public class UserService extends ServiceImpl<UserMapper,User> {
     public List<User> findAll(String username) {
        return userMapper.findAll(username);
     }
-
+/*
     public Integer removeById(Integer id) {
 
         return userMapper.removeById(id);
-    }
+    }*/
 
     public List<User> selectPage(Integer pageNum, Integer pageSize ,String username) {
         return userMapper.selectPage(pageNum,pageSize,username);

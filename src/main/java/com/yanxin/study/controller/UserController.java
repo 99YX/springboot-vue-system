@@ -29,14 +29,19 @@ public class UserController {
     @GetMapping("/select")
     public List<User> setTest(String username)
     {
-        return  userService.findAll(username);
+        return userService.list();
+//        return  userService.findAll(username);
 
     }
 
     /*动态绑定 /{id}和参数id要保持一致*/
     @DeleteMapping("/{id}")
-    public Integer delete(@PathVariable Integer id) {
+    public Boolean delete(@PathVariable Integer id) {
+
         return userService.removeById(id);
+
+        //  返回Integer
+//        return userService.removeById(id);
     }
 
     //分页 http://localhost:8083/User/page?pageNum=1&pageSize=3
