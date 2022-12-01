@@ -69,7 +69,7 @@ public class UserController {
         pageNum = (pageNum - 1) * pageSize;
 
 
-        List<User> data = userService.selectPage(pageNum, pageSize, username);
+        List<User> data = userService.selectPages(pageNum, pageSize, username);
 
         Map<String, Object> res = new HashMap<>();
         res.put("data", data);
@@ -83,7 +83,7 @@ public class UserController {
 
 
     //分页查询使用mybatisplus方式
-
+    @GetMapping("/page")
     public   IPage<User> findPage(@RequestParam Integer pageNum,  @RequestParam Integer pageSize, @RequestParam String username) {
 
 
@@ -92,6 +92,9 @@ public class UserController {
         IPage<User> page=new Page<>(pageNum,pageSize);
         //
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
+
+        //
+        queryWrapper.like("username",username);
 
         return  userService.page(page,queryWrapper);
 

@@ -59,7 +59,7 @@ public class UserService extends ServiceImpl<UserMapper,User> {
         return userMapper.removeById(id);
     }*/
 
-    public List<User> selectPage(Integer pageNum, Integer pageSize ,String username) {
-        return userMapper.selectPage(pageNum,pageSize,username);
+    public List<User> selectPages(Integer pageNum, Integer pageSize ,String username) {
+        return userMapper.selectPages(pageNum,pageSize,username);
     }
 }

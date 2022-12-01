@@ -26,5 +26,6 @@ public interface UserMapper extends BaseMapper<User> {
     //分页查询
     @Select("select * from sys_user where username like #{username} limit #{pageNum},#{pageSize};")
 
-    List<User> selectPage(@Param("pageNum")Integer pageNum, @Param("pageSize")Integer pageSize,@Param("username")String username);
+    List<User> selectPages(@Param("pageNum")Integer pageNum, @Param("pageSize")Integer pageSize,@Param("username")String username);
 }
+
