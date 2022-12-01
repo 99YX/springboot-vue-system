@@ -83,8 +83,9 @@ public class UserController {
 
 
     //分页查询使用mybatisplus方式
+    /*@RequestParam (defaultValue ="") 默认值*/
     @GetMapping("/page")
-    public   IPage<User> findPage(@RequestParam Integer pageNum,  @RequestParam Integer pageSize, @RequestParam String username) {
+    public   IPage<User> findPage(@RequestParam (defaultValue ="") Integer pageNum,  @RequestParam (defaultValue ="")Integer pageSize, @RequestParam (defaultValue ="") String username) {
 
 
 
