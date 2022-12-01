@@ -1,5 +1,8 @@
 package com.yanxin.study.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yanxin.study.entity.User;
 import com.yanxin.study.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +48,8 @@ public class UserController {
     }
 
     //分页 http://localhost:8083/User/page?pageNum=1&pageSize=3
-    @GetMapping("/page")
-    public Map<String, Object> findPage(@RequestParam Integer pageNum,  @RequestParam Integer pageSize, @RequestParam String username) {
+    @GetMapping("/pages")
+    public Map<String, Object> findPageOne(@RequestParam Integer pageNum,  @RequestParam Integer pageSize, @RequestParam String username) {
 
         //模糊查询添加%%
 
@@ -80,5 +83,21 @@ public class UserController {
 
 
     //分页查询使用mybatisplus方式
+
+    public   IPage<User> findPage(@RequestParam Integer pageNum,  @RequestParam Integer pageSize, @RequestParam String username) {
+
+
+
+        //
+        IPage<User> page=new Page<>(pageNum,pageSize);
+        //
+        QueryWrapper<User> queryWrapper=new QueryWrapper<>();
+
+        return  userService.page(page,queryWrapper);
+
+
+    }
+
+
 
 }
