@@ -85,7 +85,7 @@ public class UserController {
     //分页查询使用mybatisplus方式
     /*@RequestParam (defaultValue ="") 默认值*/
     @GetMapping("/page")
-    public   IPage<User> findPage(@RequestParam (defaultValue ="") Integer pageNum,  @RequestParam (defaultValue ="")Integer pageSize, @RequestParam (defaultValue ="") String username) {
+    public   IPage<User> findPage(@RequestParam (defaultValue ="") Integer pageNum,  @RequestParam (defaultValue ="")Integer pageSize, @RequestParam (defaultValue ="") String username,@RequestParam (defaultValue ="") String email,@RequestParam (defaultValue ="") String address) {
 
 
 
@@ -94,8 +94,15 @@ public class UserController {
         //
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
 
-        //
+
         queryWrapper.like("username",username);
+
+
+        queryWrapper.like("email", email);
+
+
+        queryWrapper.like("address", address);
+
 
         return  userService.page(page,queryWrapper);
 
