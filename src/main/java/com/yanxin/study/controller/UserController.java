@@ -95,16 +95,19 @@ public class UserController {
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
 
 
-        queryWrapper.like("username",username);
+        if (!"".equals(username)) {
+            queryWrapper.like("username", username);
+      }
+       if (!"".equals(email)) {
+          queryWrapper.like("email", email);
+      }
+       if (!"".equals(address)) {
+           queryWrapper.like("address", address);
+        }
 
 
-        queryWrapper.like("email", email);
 
-
-        queryWrapper.like("address", address);
-
-
-        return  userService.page(page,queryWrapper);
+            return  userService.page(page,queryWrapper);
 
 
     }
