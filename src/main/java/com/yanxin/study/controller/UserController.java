@@ -95,6 +95,7 @@ public class UserController {
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
 
 
+        //只要不为空就进行判断
         if (!"".equals(username)) {
             queryWrapper.like("username", username);
       }
@@ -105,7 +106,9 @@ public class UserController {
            queryWrapper.like("address", address);
         }
 
+       //根据id倒序
 
+     /*  queryWrapper.orderByDesc("id");*/
 
             return  userService.page(page,queryWrapper);
 
