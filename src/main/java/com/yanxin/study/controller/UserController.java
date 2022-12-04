@@ -37,6 +37,20 @@ public class UserController {
 
     }
 
+    /*批量删除的接口*/
+
+    @DeleteMapping("/batch/{id}")
+    /*批量删除的id 使用list集合进行接受*/
+    public Boolean BatchDelete(@RequestBody List<Integer> ids) {
+
+          /*多个id的值,通过removeByIds 进行删除*/
+        return userService.removeByIds(ids);
+
+        //  返回Integer
+//        return userService.removeById(id);
+    }
+
+
     /*动态绑定 /{id}和参数id要保持一致*/
     @DeleteMapping("/{id}")
     public Boolean delete(@PathVariable Integer id) {
