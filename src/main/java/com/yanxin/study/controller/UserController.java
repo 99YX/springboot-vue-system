@@ -39,7 +39,7 @@ public class UserController {
 
     /*批量删除的接口*/
 
-    @DeleteMapping("/batch/{id}")
+    @PostMapping("/batch/delete")
     /*批量删除的id 使用list集合进行接受*/
     public Boolean BatchDelete(@RequestBody List<Integer> ids) {
 
