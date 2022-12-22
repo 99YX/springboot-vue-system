@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 
 
 import java.util.List;
-/*@Mapper*/
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
     @Select("select * from sys_user where username like #{username}")
     //查询数据库当中user表信息
