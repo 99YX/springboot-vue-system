@@ -54,11 +54,11 @@
             <version>2.0.9</version>
         </dependency>
 
-        <!--mybatis-plus-boot 版本必须大于3.5.1-->
+        <!--mybatis-plus-boot 版本必须大于3.5.1 使用代码生成器的时候可以是3.5.1-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.2</version>
+            <version>3.5.1</version>
         </dependency>
 
 
