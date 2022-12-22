@@ -26,7 +26,7 @@ public class CodeGenerator {
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.yanxin.study") // 设置父包名
-                            .moduleName(null) // 设置父包模块名
+                            .moduleName(null) // 设置父包模块名 设置了null 接口就只有单斜杠
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D:\\代码\\springboot-study-system\\src\\main\\resources\\mapper\\")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {

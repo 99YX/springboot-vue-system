@@ -1,7 +1,17 @@
 package ${package.Controller};
 
+#*导包*#
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
+import java.util.List;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.qingge.springboot.common.Result;
+#*导入实体类的业务层*#
+import ${package.Service}.${table.serviceName};
+#*导入实体类javabeen对象*#
+import ${package.Entity}.${entity};
 
-import org.springframework.web.bind.annotation.RequestMapping;
 
 #if(${restControllerStyle})
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +46,60 @@ public class ${table.controllerName} extends ${superControllerClass} {
 public class ${table.controllerName} {
 #end
 
-}
+    #*类似导入service层包*#
+    @Resource
+    private ${table.serviceName} ${table.entityPath}Service;
+
+    /*学习git*/
+    //数据库插入操作
+    // 新增或者更新
+
+
+    @PostMapping("/user")
+    /*@RequestBody主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的)；GET方式无请求体，所以使用@RequestBody接收数据时，前端不能使用GET方式提交数据，而是用POST方式进行提交。在后端的同一个接收方法里，@RequestBody与@RequestParam()可以同时使用，@RequestBody最多只能有一个，而@RequestParam()可以有多个。*/
+
+     #*类似与 @RequestBody User(${entity}) user(${table.entityPath}) *#
+    public Result save(@RequestBody ${entity} ${table.entityPath}) {
+    ${table.entityPath}Service.saveOrUpdate(${table.entityPath});
+        return Result.success();
+        }
+
+
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Integer id) {
+        ${table.entityPath}Service.removeById(id);
+            return Result.success();
+            }
+
+    #*批量删除的接口*#
+    @PostMapping("/batch/delete")
+    #*批量删除的id 使用list集合进行接受*#
+    public Result deleteBatch(@RequestBody List<Integer> ids) {
+        #*多个id的值,通过removeByIds 进行删除*#
+    ${table.entityPath}Service.removeByIds(ids);
+            return Result.success();
+            }
+
+    @GetMapping
+    public Result findAll() {
+            return Result.success(${table.entityPath}Service.list());
+            }
+
+    @GetMapping("/{id}")
+    public Result findOne(@PathVariable Integer id) {
+            return Result.success(${table.entityPath}Service.getById(id));
+            }
+
+    @GetMapping("/page")
+    public Result findPage(@RequestParam Integer pageNum,
+    @RequestParam Integer pageSize) {
+            QueryWrapper<${entity}> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("id");
+        return Result.success(${table.entityPath}Service.page(new Page<>(pageNum, pageSize), queryWrapper));
+        }
+
+
+        }
+
 
 #end
