@@ -95,7 +95,7 @@ public class UserController {
             }
 
 
-        queryWrapper.orderByDesc("id");
+      /*  queryWrapper.orderByDesc("id");*/
             return userService.page(new Page<>(pageNum, pageSize), queryWrapper);
                     //return Result.success(userService.page(new Page<>(pageNum, pageSize), queryWrapper));
         }
