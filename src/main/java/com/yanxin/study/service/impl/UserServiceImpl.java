@@ -1,5 +1,6 @@
 package com.yanxin.study.service.impl;
 
+import com.yanxin.study.controller.dto.UserDto;
 import com.yanxin.study.entity.User;
 import com.yanxin.study.mapper.UserMapper;
 import com.yanxin.study.service.IUserService;
@@ -17,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    @Override
+    public boolean login(UserDto userDto) {
+        return false;
+    }
 }
