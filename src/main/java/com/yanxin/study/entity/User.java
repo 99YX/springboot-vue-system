@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,6 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 /*有参构造*/
 @AllArgsConstructor
+/*ToString方法*/
+@ToString
 /*mybatisplus 必须加上这个注解，才能找到表名 同时主键加上 @ID*/
 @TableName(value = "sys_user")
 public class User implements Serializable {
