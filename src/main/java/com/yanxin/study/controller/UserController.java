@@ -187,6 +187,13 @@ public class UserController {
 
         // 方式2：忽略表头的中文，直接读取表的内容
         List<List<Object>> list = reader.read(1);
+        /*
+        *  CollUtil.newArrayList方法表示新建ArrayList并填充元素
+        *   HashMap<String, String> map = CollUtil.newHashMap();
+            List<String> list1 = CollUtil.newArrayList();
+            List<Integer> list1 = CollUtil.newArrayList(1, 2, 3);
+
+        * */
         List<User> users = CollUtil.newArrayList();
         for (List<Object> row : list) {
             User user = new User();
