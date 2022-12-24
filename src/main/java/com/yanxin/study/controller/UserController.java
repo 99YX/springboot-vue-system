@@ -2,6 +2,7 @@ package com.yanxin.study.controller;
 
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
@@ -55,7 +56,25 @@ public class UserController {
     /*@RequestBody：将前端的json数据转换成实体类对象*/
     public boolean login(@RequestBody UserDto userDto) {
         /*@RequestBody主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的)；GET方式无请求体，所以使用@RequestBody接收数据时，前端不能使用GET方式提交数据，而是用POST方式进行提交。在后端的同一个接收方法里，@RequestBody与@RequestParam()可以同时使用，@RequestBody最多只能有一个，而@RequestParam()可以有多个。*/
-        return userService.login(userDto);
+
+
+        String username = userDto.getUsername();/*获取前端账号*/
+        String password = userDto.getPassword();/*获取前端密码*/
+        /*使用hutool当中StrUtil方法判断账号和密码是否为空*/
+        if(StrUtil.isBlank(username)||StrUtil.isBlank(password))
+        {
+
+            return false;
+
+
+        }
+        else {
+
+            return userService.login(userDto);
+
+        }
+
+
     }
 
     @PostMapping("/user")

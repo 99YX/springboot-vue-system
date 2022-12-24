@@ -43,4 +43,13 @@ public class UserDto {
     @ApiModelProperty("密码")
     private String password;
 
+    @ApiModelProperty("头像")
+    private String avatarUrl;
+
+    @ApiModelProperty("角色")
+    private String role;
+    @ApiModelProperty("昵称")
+    private String nickname;
+
+
 }
