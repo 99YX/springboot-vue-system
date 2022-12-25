@@ -15,14 +15,9 @@ import lombok.ToString;
  * @return
  **/
 @Data
-/*无参构造*/
-@NoArgsConstructor
-/*有参构造*/
-@AllArgsConstructor
-/*ToString方法*/
-@ToString
+
 /*mybatisplus 必须加上这个注解，才能找到表名 同时主键加上 @ID*/
-@TableName(value = "sys_user")
+
 public class UserDto {
     private static final long serialVersionUID = 1L;
 
@@ -36,18 +31,12 @@ public class UserDto {
      hidden–隐藏*/
 
 
-    @ApiModelProperty("用户名")
+    private Integer id;
     private String username;
-
-    @ApiModelProperty("密码")
     private String password;
-
-    @ApiModelProperty("头像")
-    private String avatarUrl;
-
-
-    @ApiModelProperty("昵称")
     private String nickname;
-
+    private String avatarUrl;
+    private String token;
+    private String role;
 
 }

@@ -34,37 +34,64 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         userQueryWrapper.eq("password", userDto.getPassword());
 
-
+        User one = null;
 
         /*get one 只能返回一条数据,如果多个会有异常*/
         try {
-            User one = getOne(userQueryWrapper);
+            one = getOne(userQueryWrapper);
 
             System.out.println(one);
-
-            //使用hutool工具将从数据库查询的数据(User对象javabean)复制到UserDto
-
-            if (one != null) {
-                //true :忽略大小写
-
-                BeanUtil.copyProperties(one, userDto, true);
-
-                return userDto;
-            } else {
-                //失败
-                throw new ServiceException(Constants.CODE_600, "用户名或密码错误");
-            }
-
 
         } catch (Exception e) {
             //日志
             LOG.error(e);
 
-                //失败
+            //失败
             throw new ServiceException(Constants.CODE_500, "系统错误");
+        }
+
+        //使用hutool工具将从数据库查询的数据(User对象javabean)复制到UserDto
+
+        if (one != null) {
+            //true :忽略大小写
+
+            BeanUtil.copyProperties(one, userDto, true);
+
+            return userDto;
+        } else {
+            //失败
+            throw new ServiceException(Constants.CODE_600, "用户名或密码错误");
         }
 
 
     }
 
+    @Override
+    public User register(UserDto userDTO) {
+        //使用mybatisplus对象查询
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        //查询数据库的数据
+        userQueryWrapper.eq("username", userDTO.getUsername());
+
+        userQueryWrapper.eq("password", userDTO.getPassword());
+
+        User one = getOne(userQueryWrapper);
+
+        if(one==null){
+            //new 一个user对象将前端传过来的userDTO赋值给user
+            one=new User();
+
+            BeanUtil.copyProperties(userDTO ,one, true);
+
+            //插入数据库
+            save(one);
+            return one;
+        }
+        else {
+             throw new ServiceException(Constants.CODE_600, "用户已经存在");
+        }
+
+
+
+        }
 }
