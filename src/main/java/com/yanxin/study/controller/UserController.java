@@ -50,6 +50,12 @@ public class UserController {
     //数据库插入操作
     // 新增或者更新
 
+    @GetMapping("/username/{username}")
+    public Result findByUsername(@PathVariable String username) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        return Result.success(userService.getOne(queryWrapper));
+    }
     @PostMapping("/register")
     public Result register(@RequestBody UserDto userDTO) {
         String username = userDTO.getUsername();
