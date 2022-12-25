@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GlobalExceptionHandler {
 
     /**
-     * 如果抛出的的是ServiceException，则调用该方法
+     * 如果抛出的的是ServiceException，则调用该方法捕获
      * @param se 业务异常
      * @return Result
      */

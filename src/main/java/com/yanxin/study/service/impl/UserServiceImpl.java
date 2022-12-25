@@ -3,8 +3,10 @@ package com.yanxin.study.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yanxin.study.common.Constants;
 import com.yanxin.study.controller.dto.UserDto;
 import com.yanxin.study.entity.User;
+import com.yanxin.study.exception.ServiceException;
 import com.yanxin.study.mapper.UserMapper;
 import com.yanxin.study.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -48,9 +50,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 BeanUtil.copyProperties(one, userDto, true);
 
                 return userDto;
-            }else {
+            } else {
                 //失败
-                throw
+                throw new ServiceException(Constants.CODE_600, "用户名或密码错误");
             }
 
 
@@ -58,7 +60,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             //日志
             LOG.error(e);
 
-
+                //失败
+            throw new ServiceException(Constants.CODE_500, "系统错误");
         }
 
 
