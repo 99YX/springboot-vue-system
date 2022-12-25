@@ -8,6 +8,7 @@ import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yanxin.study.common.Constants;
 import com.yanxin.study.common.Result;
 import com.yanxin.study.controller.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class UserController {
     @PostMapping("/login")
 
     /*@RequestBody：将前端的json数据转换成实体类对象*/
-    public boolean login(@RequestBody UserDto userDto) {
+    public Result  login(@RequestBody UserDto userDto) {
         /*@RequestBody主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的)；GET方式无请求体，所以使用@RequestBody接收数据时，前端不能使用GET方式提交数据，而是用POST方式进行提交。在后端的同一个接收方法里，@RequestBody与@RequestParam()可以同时使用，@RequestBody最多只能有一个，而@RequestParam()可以有多个。*/
 
 
@@ -64,13 +65,14 @@ public class UserController {
         if(StrUtil.isBlank(username)||StrUtil.isBlank(password))
         {
 
-            return false;
+            return Result.error(Constants.CODE_400, "参数错误");
 
 
         }
         else {
 
-            return userService.login(userDto);
+            UserDto dto=userService.login(userDto);
+            return Result.success(dto);
 
         }
 

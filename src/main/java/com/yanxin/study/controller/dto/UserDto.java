@@ -34,8 +34,7 @@ public class UserDto {
      required–是否必填
      example–举例说明
      hidden–隐藏*/
-    @ApiModelProperty("id")
-    private Integer id;
+
 
     @ApiModelProperty("用户名")
     private String username;
@@ -46,8 +45,7 @@ public class UserDto {
     @ApiModelProperty("头像")
     private String avatarUrl;
 
-    @ApiModelProperty("角色")
-    private String role;
+
     @ApiModelProperty("昵称")
     private String nickname;
 
